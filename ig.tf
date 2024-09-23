@@ -11,6 +11,7 @@ resource "aws_route_table" "example_public_rt" {
   }
 }
 
+#attchinf route table in subnets
 resource "aws_route_table_association" "example_subnet_1_rt_assoc" {
   subnet_id      = aws_subnet.example.id
   route_table_id = aws_route_table.example_public_rt.id
