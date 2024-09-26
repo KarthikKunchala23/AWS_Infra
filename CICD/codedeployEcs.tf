@@ -307,6 +307,13 @@ resource "aws_security_group" "ecs_sg" {
   vpc_id = aws_vpc.ecs_vpc.id
   name   = "ecs_security_group"
 
+  egress {
+    from_port = 0
+    to_port = 0
+    protocol = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
   dynamic "ingress" {
     for_each = var.sg_ports
     # iterator = "port"
