@@ -33,7 +33,7 @@ resource "aws_ecs_task_definition" "example" {
   TASK_DEFINITION
 }
 
-# ${data.aws_ecr_image.ecr_image.image_uri}
+
 # VPC for the network
 resource "aws_vpc" "ecs_vpc" {
   cidr_block = "10.0.0.0/16"
@@ -122,7 +122,7 @@ resource "aws_ecs_service" "example" {
   task_definition = aws_ecs_task_definition.example.arn
   launch_type     = "FARGATE"
 
-  desired_count = 2  # Set to 0 to prevent container from running initially
+  desired_count = 0  # Set to 0 to prevent container from running initially
 
   network_configuration {
     subnets          = [aws_subnet.example.id]
@@ -136,9 +136,9 @@ resource "aws_ecs_service" "example" {
     container_port   = 8080
   }
 
-  lifecycle {
-    ignore_changes = [desired_count]  # Ignore changes to the desired count
-  }
+  # lifecycle {
+  #   ignore_changes = [desired_count]  # Ignore changes to the desired count
+  # }
 
   depends_on = [aws_lb_listener.example]
 }

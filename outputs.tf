@@ -1,18 +1,3 @@
-output "ecr_arn" {
-  description = "ECR ARN"
-  value = aws_ecr_repository.vproapp.arn
-}
-
-output "registry_id" {
-  description = "registry id"
-  value = aws_ecr_repository.vproapp.registry_id
-}
-
-output "repo_url" {
-  description = "repositry url"
-  value = aws_ecr_repository.vproapp.repository_url
-}
-
 output "sg_id" {
   description = "value"
   value = aws_security_group.ecs_sg.id
